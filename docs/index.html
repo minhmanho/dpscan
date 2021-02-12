@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Deep Photo Scan - Man M. Ho</title>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<table width="80%" style="margin-left: auto;  margin-right: auto; table-layout:fixed;">
+	<tbody>
+		<tr>
+			<td>
+				<h1>Deep Photo Scan: <br> Semi-supervised learning for dealing with the real-world degradation in smartphone photo scanning</h1>
+				<table width="90%" style="margin-left: auto;  margin-right: auto; table-layout:fixed;">
+					<tbody>
+						<tr>
+							<td>
+							<span style="font-size: 24px;"><a href="https://minhmanho.github.io/"><b>Man M. Ho</b></a></span>
+							</td>
+
+							<td>
+							<span style="font-size: 24px;"><a href="https://www.zhou-lab.info/jinjia-zhou"><b>Jinjia Zhou</b></a></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table width="90%" style="margin-left: auto;  margin-right: auto; table-layout:fixed;">
+					<tbody>
+						<tr>
+							<td>
+								<br>
+								Hosei Univerisity, Tokyo, Japan
+								<br>
+								<br>
+							</td>
+						</tr>
+				</tbody>
+				</table>
+
+				<table width="90%" style="margin-left: auto;  margin-right: auto; table-layout:fixed;">
+					<tbody><tr>
+					<td>
+						<a href="https://arxiv.org/abs/2102.06120">[Paper]</a>
+					</td>
+					<td>
+						<a href="">[SuppDocs]</a>
+					</td>
+					<td>
+						<a href="https://drive.google.com/file/d/1GOWhP7LNa7pnTDmuEdJ66Q_FGAbYwc2J/view?usp=sharing">[SuppVideo]</a>
+					</td>
+					<td>
+						<a href="https://github.com/minhmanho/dpscan">[Code]</a>
+					</td>
+					
+					</tr></tbody>
+				</table>
+				<br>
+				ArXiv, 2021
+				<br>
+				<br>
+				<img src="images/teaser.jpg" width=100%/>
+				<hr>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<h2>DEMO</h2>
+				<br>
+				<div class="videoWrapper">
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/-kC2T6vMlpQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<hr>
+			</td>
+		</tr>
+
+		<tr>
+			<td style="text-align: justify;">
+				<h2>Abstract</h2>
+				<br>
+				Physical photographs now can be conveniently scanned by smartphones and stored forever as a digital version, 
+				but the scanned photos are not restored well. One solution is to train a supervised deep neural network on many digital photos 
+				and the corresponding scanned photos. However, human annotation costs a huge resource leading to limited training data. 
+				Previous works create training pairs by simulating degradation using image processing techniques. 
+				Their synthetic images are formed with perfectly scanned photos in latent space. Even so, the real-world degradation 
+				in smartphone photo scanning remains unsolved since it is more complicated due to real lens defocus, lighting conditions, 
+				losing details via printing, various photo materials, and more. To solve these problems, we propose a Deep Photo Scan (DPScan) 
+				based on semi-supervised learning. First, we present the way to produce real-world degradation and provide the DIV2K-SCAN dataset 
+				for smartphone-scanned photo restoration. Second, by using DIV2K-SCAN, we adopt the concept of Generative Adversarial Networks to learn 
+				how to degrade a high-quality image as if it were scanned by a real smartphone, then generate pseudo-scanned photos for unscanned photos. 
+				Finally, we propose to train on the scanned and pseudo-scanned photos representing a semi-supervised approach with a cycle process as: 
+				high-quality images --> real-/pseudo-scanned photos --> reconstructed images. 
+				The proposed semi-supervised scheme can balance between supervised and unsupervised errors while optimizing to limit 
+				imperfect pseudo inputs but still enhance restoration. As a result, the proposed DPScan quantitatively and qualitatively outperforms 
+				its baseline architecture, state-of-the-art academic research, and industrial products in smartphone photo scanning.
+				<hr>
+			</td>
+			
+		</tr>
+		<tr>
+			<td>
+				<h2>Overall Concept</h2>
+				<br>
+				Figure: A summary of our semi-supervised Deep Photo Scan (DPScan). 
+				We produce real-world degradation by printing the ground-truth images, 
+				taking the digital version of printed photos using a smartphone, perspective warping, and aligning them (<b><span style="color:green">green</span></b>). 
+				However, that process costs a huge resource. To overcome this issue, in training, G2 learns to degrade the ground-truth images as being scanned and 
+				synthesize pseudo inputs for input-free ground-truth images (<b><span style="color:blue">blue</span></b>). 
+				Therefore, our G1 can learn to restore on more contexts in supervised (black) and unsupervised (<b><span style="color:red">red</span></b>) ways representing a 
+				semi-supervised approach for smartphone-scanned photo restoration.
+				<br>
+				<img src="images/overall.jpg" width=100%/>
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h2>Learning Approach</h2>
+				<br>
+				Figure: We present a semi-supervised learning that enables our restoration to be trained on scanned (supervised) (a) and unscanned (unsupervised) (b) photos 
+				under strong similarity loss functions such as L2, LPIPS, 
+				and MS-SSIM. 
+				Errors between (a) and (b) are balanced 
+				while optimizing to limit imperfect pseudo inputs but still enhance restoration.
+				<br>
+				<img src="images/learning_approach.jpg" width=100%/>
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h2>DIV2K-SCAN</h2>
+				<br> 
+				Training data captured using iPhone XR can be downloaded at <b><span style="color:blue"> <a href="https://drive.google.com/file/d/1n6G1MzLBLKLj3zDpj1ziObq8gsG8wzKo/view?usp=sharing">[here]</a></span></b>.
+				<br>
+				<img src="images/train.jpg" width=100%/>
+				<br>
+				<br>
+				Besides photos in the same distribution as training photos, test data also consists of out-of-distribution cases such as color-balanced and taken-by-XperiaXZ1 photos.
+				<br>
+				All test cases can be downloaded at <b><span style="color:blue"><a href="https://drive.google.com/file/d/1atyzBBLWNOQCdzPIkmfD3h6OlEU2tNTi/view?usp=sharing">[here]</a></span></b>.
+				<br>
+				<img src="images/test.jpg" width=100%/>
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h2>A Result</h2>
+				<br>
+				<img src="images/result.jpg" width=100%/>
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h2>In case of Out-of-distribution</h2>
+				<br>
+				<img src="images/ood.jpg" width=100%/>
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td style="font-size: 14px; text-align: left;">
+				<h2>If you find our work useful, please consider citing</h2>
+				<br>
+				<code>
+					@misc{ho2021deep,<br>
+						title={Deep Photo Scan: Semi-supervised learning for dealing with the real-world degradation in smartphone photo scanning}, <br>
+						author={Man M. Ho and Jinjia Zhou},<br>
+						year={2021},<br>
+						eprint={2102.06120},<br>
+						archivePrefix={arXiv},<br>
+						primaryClass={cs.CV}<br>
+				  }
+				</code>
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h2>License</h2>
+				<br>
+				Our code and trained models are for non-commercial uses and research purposes only.
+				<hr>
+			</td>
+		</tr>
+<br>
+</tbody>
+</table>
+<br>
+
+</html>
