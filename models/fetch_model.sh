@@ -1,0 +1,1 @@
+gdown https://drive.google.com/uc?id=1LyMXV_wx_G3DMtKTV6BtjR22rlnweaB- -O ./models/dpscan_saved_weights.pth.tar
