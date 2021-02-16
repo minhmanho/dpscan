@@ -3,8 +3,8 @@
 
 ![Alt Text](https://raw.githubusercontent.com/minhmanho/dpscan/master/docs/images/dpscan.gif)
 
-[Deep Photo Scan: Semi-supervised learning for dealing with the real-world degradation in smartphone photo scanning](https://arxiv.org/abs/2102.06120)
-[Man M. Ho](https://minhmanho.github.io/) and [Jinjia Zhou](https://www.zhou-lab.info/jinjia-zhou)
+[Deep Photo Scan: Semi-supervised learning for dealing with the real-world degradation in smartphone photo scanning](https://arxiv.org/abs/2102.06120)<br>
+[Man M. Ho](https://minhmanho.github.io/) and [Jinjia Zhou](https://www.zhou-lab.info/jinjia-zhou)<br>
 In ArXiv, 2021.
 
 ## Prerequisites
@@ -22,7 +22,7 @@ cd dpscan
 ```
 
 ### 2. Fetch the pre-trained model
-You can download the pre-trained model at [here](https://drive.google.com/uc?id=1LyMXV_wx_G3DMtKTV6BtjR22rlnweaB-) (141MB) or run the following script:
+You can download the pre-trained model at [here](https://drive.google.com/uc?id=1LyMXV_wx_G3DMtKTV6BtjR22rlnweaB-) (148MB) or run the following script:
 
 ```
 ./models/fetch_model.sh
