@@ -42,7 +42,7 @@ CUDA_VISIBLE_DEVICES=0 python run.py \
 Check [our page](https://minhmanho.github.io/dpscan/) for the results.
 
 ## DIV2K-SCAN dataset
-Training data captured using iPhone XR can be downloaded at this [Google Drive](https://drive.google.com/file/d/1n6G1MzLBLKLj3zDpj1ziObq8gsG8wzKo/view?usp=sharing).
+Training data captured using iPhone XR can be downloaded at this [Google Drive](https://drive.google.com/file/d/1JhZSfQxsxbXb8sxtxw-leJEUdsvASgdp/view?usp=sharing).
 ![Alt Text](https://raw.githubusercontent.com/minhmanho/dpscan/master/docs/images/train.jpg)
 
 Besides photos in the same distribution as training photos, test data also consists of out-of-distribution cases such as color-balanced and taken-by-XperiaXZ1 photos. All test cases can be downloaded at this [Google Drive](https://drive.google.com/file/d/1atyzBBLWNOQCdzPIkmfD3h6OlEU2tNTi/view?usp=sharing).
