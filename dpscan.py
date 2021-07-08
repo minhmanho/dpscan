@@ -15,7 +15,7 @@ class DPScan(object):
 
     def __call__(self, img_path, out_path):
         with torch.no_grad():
-            pil_img = Image.open(img_path)
+            pil_img = Image.open(img_path).convert('RGB')
             if self.img_size[0] != -1:
                 pil_img = pil_img.resize(self.img_size, resample=Image.BICUBIC)
 

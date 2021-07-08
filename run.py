@@ -1,7 +1,7 @@
-import glob
 import os
 import os.path as osp
 import argparse
+from utils import *
 from dpscan import DPScan
 
 if __name__ == '__main__':
@@ -16,7 +16,7 @@ if __name__ == '__main__':
         os.makedirs(args.out_dir)
 
     dpscan = DPScan(args)
-    img_names = [osp.basename(k) for k in glob.glob(args.in_dir + "/*.png")]
+    img_names = read_images(args.in_dir)
     img_names.sort()
 
     for i, img_name in enumerate(img_names):
