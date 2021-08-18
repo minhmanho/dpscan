@@ -1,7 +1,7 @@
 # Deep Photo Scan
-#### [[Page]](https://minhmanho.github.io/dpscan/) [[Paper]](https://arxiv.org/abs/2102.06120) [[SupDoc]](https://drive.google.com/file/d/1atoOvwUAnS7qJ438w8GB-mmwg5QwwLrf/view?usp=sharing) [[DEMO]](https://youtu.be/-kC2T6vMlpQ)
+#### [[Page]](https://minhmanho.github.io/dpscan/) [[Paper]](https://arxiv.org/abs/2102.06120) [[SupDoc]](https://drive.google.com/file/d/15cf-Ric1Jt2YT1ThWDEd5yO_xjhxCsSG/view?usp=sharing) [[Demo]](https://raw.githubusercontent.com/minhmanho/dpscan/master/docs/data/ds_demo.mp4)
 
-![Alt Text](https://raw.githubusercontent.com/minhmanho/dpscan/master/docs/images/dpscan.gif)
+![Alt Text](https://raw.githubusercontent.com/minhmanho/dpscan/master/docs/data/dpscan.gif)
 
 [Deep Photo Scan: Semi-supervised learning for dealing with the real-world degradation in smartphone photo scanning](https://arxiv.org/abs/2102.06120)<br>
 [Man M. Ho](https://minhmanho.github.io/) and [Jinjia Zhou](https://www.zhou-lab.info/jinjia-zhou)<br>
@@ -22,11 +22,13 @@ cd dpscan
 ```
 
 ### 2. Fetch the pre-trained model
-You can download the pre-trained model at [here](https://drive.google.com/uc?id=1LyMXV_wx_G3DMtKTV6BtjR22rlnweaB-) (148MB) or run the following script:
+You can download the pre-trained model (1D-DPScan+RECA+SSL) at [here](https://drive.google.com/uc?id=1LyMXV_wx_G3DMtKTV6BtjR22rlnweaB-) (148MB) or run the following script:
 
 ```
 ./models/fetch_model.sh
 ```
+
+_Note: The pre-trained model of G-DPScan+RECA+LA+SSL will be published soon._
 
 ## Smartphone-scanned Photo Restoration
 Run our semi-supervised Deep Photo Scan to restore smartphone-scanned photos as:
@@ -39,14 +41,10 @@ CUDA_VISIBLE_DEVICES=0 python run.py \
     --size 1072x720
 ```
 
-Check [our page](https://minhmanho.github.io/dpscan/) for the results.
+Check [DPScan Page](https://minhmanho.github.io/dpscan/) for the results.
 
 ## DIV2K-SCAN dataset
-Training data captured using iPhone XR can be downloaded at this [Google Drive](https://drive.google.com/file/d/1JhZSfQxsxbXb8sxtxw-leJEUdsvASgdp/view?usp=sharing).
-![Alt Text](https://raw.githubusercontent.com/minhmanho/dpscan/master/docs/images/train.jpg)
-
-Besides photos in the same distribution as training photos, test data also consists of out-of-distribution cases such as color-balanced and taken-by-XperiaXZ1 photos. All test cases can be downloaded at this [Google Drive](https://drive.google.com/file/d/1atyzBBLWNOQCdzPIkmfD3h6OlEU2tNTi/view?usp=sharing).
-![Alt Text](https://raw.githubusercontent.com/minhmanho/dpscan/master/docs/images/test.jpg)
+Please check [DPScan Page](https://minhmanho.github.io/dpscan/) for more information.
 
 ## Citation
 If you find this work useful, please consider citing:
@@ -80,7 +78,7 @@ Timofte, Radu, Shuhang Gu, Jiqing Wu, and Luc Van Gool.
 CVPR Workshops (2018).
 ```
 ## License
-This work, including the trained model, code, and dataset, is for **non-commercial** uses and research purposes only.
+This work, including the trained models, code, and dataset, is for **non-commercial** uses and **research purposes** only.
 
 ## Contact
 If you have any questions, feel free to contact me (maintainer) at [manminhho.cs@gmail.com](mailto:manminhho.cs@gmail.com)

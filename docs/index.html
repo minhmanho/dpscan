@@ -9,7 +9,7 @@
 	<tbody>
 		<tr>
 			<td>
-				<h1>Deep Photo Scan: <br> Semi-supervised learning for dealing with the real-world degradation in smartphone photo scanning</h1>
+				<h1>Deep Photo Scan: <br> Semi-Supervised Learning for dealing with the real-world degradation in Smartphone Photo Scanning</h1>
 				<table width="90%" style="margin-left: auto;  margin-right: auto; table-layout:fixed;">
 					<tbody>
 						<tr>
@@ -28,7 +28,7 @@
 						<tr>
 							<td>
 								<br>
-								Hosei Univerisity, Tokyo, Japan
+								Hosei University, Tokyo, Japan
 								<br>
 								<br>
 							</td>
@@ -42,10 +42,10 @@
 						<a href="https://arxiv.org/abs/2102.06120">[Paper]</a>
 					</td>
 					<td>
-						<a href="https://drive.google.com/file/d/1atoOvwUAnS7qJ438w8GB-mmwg5QwwLrf/view?usp=sharing">[SupDoc]</a>
+						<a href="https://drive.google.com/file/d/15cf-Ric1Jt2YT1ThWDEd5yO_xjhxCsSG/view?usp=sharing">[SupDoc]</a>
 					</td>
 					<td>
-						<a href="https://youtu.be/-kC2T6vMlpQ">[DEMO]</a>
+						<a href="https://raw.githubusercontent.com/minhmanho/dpscan/master/docs/data/ds_demo.mp4">[Demo]</a>
 					</td>
 					<td>
 						<a href="https://github.com/minhmanho/dpscan">[Code]</a>
@@ -57,18 +57,30 @@
 				ArXiv, 2021
 				<br>
 				<br>
-				<img src="images/teaser.jpg" width=100%/>
+				<img src="data/ds_p.jpg" width=100%/>
+				<br>
+				<p style="text-align: justify;">
+				We present DIV2K-SCAN dataset for smartphone-scanned photo restoration (a) with Local Alignment (b), 
+				simulate varied domains to gain generalization in scanned image properties using low-level image transformation (c), 
+				and design a Semi-Supervised Learning system to train our network on also unscanned images, 
+				diversifying training image content (d). As a result, this work obtains state-of-the-art performance on 
+				smartphone-scanned photos in seen and unseen domains (e1-e2).</p>
 				<hr>
 			</td>
 		</tr>
 
 		<tr>
 			<td>
-				<h2>DEMO</h2>
-				<br>
-				<div class="videoWrapper">
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/-kC2T6vMlpQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-				</div>
+				<video width="100%" controls>
+					<source src="data/ds_demo.mp4" type="video/mp4">
+					Your browser does not support the video element.
+				</video>
+				<p style="text-align: right; font-size: small; font-style: italic;">
+					Life Blossom by Keys of Moon | https://soundcloud.com/keysofmoon <br>
+					Music promoted by https://www.free-stock-music.com <br>
+					Attribution 4.0 International (CC BY 4.0) <br>
+					https://creativecommons.org/licenses/by/4.0/ <br>
+				</p>
 				<hr>
 			</td>
 		</tr>
@@ -78,84 +90,253 @@
 				<h2>Abstract</h2>
 				<br>
 				Physical photographs now can be conveniently scanned by smartphones and stored forever as a digital version, 
-				but the scanned photos are not restored well. One solution is to train a supervised deep neural network on many digital photos 
-				and the corresponding scanned photos. However, human annotation costs a huge resource leading to limited training data. 
-				Previous works create training pairs by simulating degradation using image processing techniques. 
+				yet the scanned photos are not restored well. One solution is to train a supervised deep neural network on many 
+				digital photos and the corresponding scanned photos. However, it requires a high labor cost, leading to limited 
+				training data. Previous works create training pairs by simulating degradation using image processing techniques. 
 				Their synthetic images are formed with perfectly scanned photos in latent space. Even so, the real-world degradation 
-				in smartphone photo scanning remains unsolved since it is more complicated due to real lens defocus, lighting conditions, 
-				losing details via printing, various photo materials, and more. To solve these problems, we propose a Deep Photo Scan (DPScan) 
-				based on semi-supervised learning. First, we present the way to produce real-world degradation and provide the DIV2K-SCAN dataset 
-				for smartphone-scanned photo restoration. Second, by using DIV2K-SCAN, we adopt the concept of Generative Adversarial Networks to learn 
-				how to degrade a high-quality image as if it were scanned by a real smartphone, then generate pseudo-scanned photos for unscanned photos. 
-				Finally, we propose to train on the scanned and pseudo-scanned photos representing a semi-supervised approach with a cycle process as: 
-				high-quality images --> real-/pseudo-scanned photos --> reconstructed images. 
-				The proposed semi-supervised scheme can balance between supervised and unsupervised errors while optimizing to limit 
-				imperfect pseudo inputs but still enhance restoration. As a result, the proposed DPScan quantitatively and qualitatively outperforms 
-				its baseline architecture, state-of-the-art academic research, and industrial products in smartphone photo scanning.
+				in smartphone photo scanning remains unsolved since it is more complicated due to lens defocus, lighting conditions, 
+				losing details via printing. Besides, locally structural misalignment still occurs in data due to distorted shapes 
+				captured in a 3-D world, reducing restoration performance and the reliability of the quantitative evaluation. To solve 
+				these problems, we propose a semi-supervised Deep Photo Scan (DPScan). First, we present a way of producing real-world 
+				degradation and provide the DIV2K-SCAN dataset for smartphone-scanned photo restoration. Also, Local Alignment is proposed 
+				to reduce the minor misalignment remaining in data. Second, we simulate many different variants of the real-world 
+				degradation using low-level image transformation to gain a generalization in smartphone-scanned image properties, 
+				then train a degradation network to generalize all styles of degradation and provide pseudo-scanned photos for 
+				unscanned images as if they were scanned by a smartphone. Finally, we propose a Semi-supervised Learning that allows 
+				our restoration network to be trained on both scanned and unscanned images, diversifying training image content. 
+				As a result, the proposed DPScan quantitatively and qualitatively outperforms its baseline architecture, 
+				state-of-the-art academic research, and industrial products in smartphone photo scanning.
 				<hr>
 			</td>
 			
 		</tr>
 		<tr>
-			<td>
-				<h2>Overall Concept</h2>
+			<td style="text-align: justify;">
+				<h2>Data Preparation</h2>
 				<br>
-				Figure: A summary of our semi-supervised Deep Photo Scan (DPScan). 
 				We produce real-world degradation by printing the ground-truth images, 
-				taking the digital version of printed photos using a smartphone, perspective warping, and aligning them (<b><span style="color:green">green</span></b>). 
-				However, that process costs a huge resource. To overcome this issue, in training, G2 learns to degrade the ground-truth images as being scanned and 
-				synthesize pseudo inputs for input-free ground-truth images (<b><span style="color:blue">blue</span></b>). 
-				Therefore, our G1 can learn to restore on more contexts in supervised (black) and unsupervised (<b><span style="color:red">red</span></b>) ways representing a 
-				semi-supervised approach for smartphone-scanned photo restoration.
+				taking the printed photo using a smartphone, edges detection, contour detection, and perspective warp (<b><span style="color:rgb(0, 255, 0)">green</span></b>). 
+				Afterward, we apply Global Alignment (<b>GA</b> - common way) to align the smartphone-scanned photo to its ground-truth (<b><span style="color:blue">blue</span></b>). 
 				<br>
-				<img src="images/overall.jpg" width=100%/>
+				<br>
+				<img src="data/ds_dp_ga.jpg" width=100%/>
+				<br>
+				<br>
+				<br>
+				Although the smartphone-scanned image pairs are aligned globally, a minor misalignment still occurs, lowering 
+				restoration performance and making a quantitative comparison using similarity metrics less reliable. 
+				To address this problem, we propose a Local Alignment (<b>LA</b>) to perfectly align a smartphone-scanned photo to its ground-truth.
+				Concretely, we step-by-step apply a center crop to R_1% of the current size to remove the black borders, 
+				resize to MxN using bicubic interpolation, extract patches from color-balanced photos to find homography 
+				matrices (<b><span style="color:blue">blue</span></b>) and from original photos for warping using a sliding window 
+				with a size of W_1 and a stride of S% of W_1, warp the scanned patches, center crop to R_2% of the size again, 
+				and finally obtain the locally-aligned patches with a size of W_2=R_2*W_1. O=1-S/R_2 denotes the percentage 
+				of how much two consecutive final patches overlap. Extracting and warping patches are powered by <a href="https://github.com/kornia/kornia/"><b>Kornia</b></a>.
+				<br>
+				<br>
+				<img src="data/ds_dp_la.jpg" width=100%/>
+				<br>
 				<hr>
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td style="text-align: justify;">
 				<h2>Learning Approach</h2>
 				<br>
-				Figure: We present a semi-supervised learning that enables our restoration to be trained on scanned (supervised) (a) and unscanned (unsupervised) (b) photos 
-				under strong similarity loss functions such as L2, LPIPS, 
-				and MS-SSIM. 
-				Errors between (a) and (b) are balanced 
-				while optimizing to limit imperfect pseudo inputs but still enhance restoration.
+				Our learning approach can be described step-by-step as follows:
+				<ol>
+					<li>
+						We train a restoration network G1 with supervised learning on 1-domain DIV2K-SCAN (iPhone XR). <br>
+						The trained model at this stage is named 1-domain DPScan (1D-DPScan). <br><br>
+					</li>
+					<li>
+						Inspired by <a href="https://minhmanho.github.io/deep_preset/"><b>Deep Preset</b></a>, we simulate many different domains from the real-world degradation as if 
+						the photos were also captured in/by other shooting environments and devices, 
+						then train G1 on them to <b>generalize smartphone-scanned image properties</b>. <br>
+						The trained model at this stage is named Generalized DPScan (G-DPScan). <br><br>
+					</li>
+					<li>
+						We train a degradation network G2 to generalize all types of degradation 
+						and provide pseudo-scanned images for unscanned photos as if a smartphone scanned them. 
+						Consequently, G1 can be trained on scanned and unscanned photos, representing a Semi-Supervised Learning (SSL) 
+						for <b>diversifying training image content</b>.
+						<br>
+						<i>Note: SSL can be applied to improve the restoration performance of the pre-trained model at any stage.</i>
+					</li>
+				</ol>
 				<br>
-				<img src="images/learning_approach.jpg" width=100%/>
+				<br>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img src="data/ds_teaser.gif" width=80%/>
+				<br>
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: justify;">
+				<h2>Q & A</h2>
+				Q: <i>Is it possible to simulate smartphone-scanned photos in other domains using low-level image transformation?</i> <br>
+				A: <b>Yes, it is possible.</b><br>
+				To prove the feasibility of this scheme, we manually adjust the photo taken by iPhone XR as if this photo was 
+				also scanned in/by other shooting environments (at dusk with lack of light) and devices 
+				(Polaroid and Sony Xperia XZ1) using low-level image transformation.
+				As a result, the simulated photos are qualitatively similar to the real-world domains, as shown below.
+				Besides, an experimental result shows that DPScan has a better generalization performance being trained on also simulated domains.
+				<br>
+				<img src="data/ds_csa.jpg" width=100%/>
+				<br>
+				<br>
+				Q: <i>SSL seems to map high-quality images to a seen domain. 
+					Is training DPScan on pseudo-scanned images can lead to better performance?</i> <br>
+				A: <b>Yes, it can lead to better performance.</b><br>
+				Since producing the real-world degradation costs a huge resource (E.g., printing images, 
+				cutting photos, manually checking and correcting detected contours, etc.), the proposed SSL can degrade a high-quality image 
+				as if it were also scanned by a smartphone so that DPScan can be trained on also unscanned photos, diversifying training image content.
+				In the case of DPScan being trained on multiple domains, the degradation network will generalize all styles of degradation.
+				An experimental result shows that SSL can provide a significant improvement.
+				<br>
+				<br>
+				Q: <i>How many simulated domains are enough?</i> <br>
+				A: <b>The largest number of simulated domains (K) we have tried is 100.</b><br>
+				After training DPScan on iPhone XR (1D-DPScan), we conduct an ablation study on K where K in {25, 50, 75, 100} 
+				in fine-tuning 1D-DPScan.
+				Test sets are prepared to have 1 seen domain and 2 unseen domains so that the improvement of average performance 
+				over three domains can represent better generalization performance.
+				As a result, G-DPScan with K=75 obtains the highest PSNR in the first 100,000 iters (~100 hours of training). However, in the next 100,00 iters, 
+				the performance of G-DPScan with K=75 is saturated; meanwhile, G-DPScan with K=100 can still be improved, even though it
+				takes a longer training time, as shown below. Continuing training G-DPScan with K=100 can lead to better performance. 
+				In conclusion, fine-tuning 1D-DPScan on simulated domains leads to better generalization in smartphone-scanned image properties, 
+				but we are not sure about the largest number of simulated domains yet.
+				<br>
+				<img src="data/ds_k.PNG" width=100%/>
+				
+				<br>
+				<br>
+				<i>Feel free to send your question to manminhho.cs (at) gmail (dot) com or leave your message at <a href="https://github.com/minhmanho/dpscan/issues"><b>https://github.com/minhmanho/dpscan/issues</b></a></i>
 				<hr>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<h2>DIV2K-SCAN dataset</h2>
-				<br> 
+				<br>
+				<table width="100%" class="tg">
+					<tbody>
+						<tr>
+							<td class="tg-baqh">Train Set</td>
+							<td class="tg-baqh" colspan="3">Test Sets (Ground-truth: [<a href="https://drive.google.com/file/d/1ZJ7ik12ARAfy-Ei9wlKigVlcr_PDxD8f/view?usp=sharing"><b>GA</b></a>] [<b>LA</b>])</td>
+						</tr>
+						<tr>
+							<td class="tg-baqh">
+								<img src="data/ds_train_xr.jpg" width=100%/>
+								<br>
+								iPhone XR: [<a href="https://drive.google.com/file/d/1JhZSfQxsxbXb8sxtxw-leJEUdsvASgdp/view?usp=sharing"><b>GA</b></a>] [<b>LA</b>]
+							</td>
+							<td class="tg-baqh">
+								<img src="data/ds_test_xr.jpg" width=100%/>
+								<br>
+								iPhone XR: [<a href="https://drive.google.com/file/d/1ae84k6jti7mreMGnHsDgDKsUT8WEsJfs/view?usp=sharing"><b>GA</b></a>] [<b>LA</b>]
+							</td>
+							<td class="tg-baqh">
+								<img src="data/ds_test_xrscb.jpg" width=100%/>
+								<br>
+								iPhone XR + SCB: [<a href="https://drive.google.com/file/d/10FA7PYE6q4A5XPNx_mE78dIj5qUTDpTH/view?usp=sharing"><b>GA</b></a>] [<b>LA</b>]
+							</td>
+							<td class="tg-baqh">
+								<img src="data/ds_test_xz1.jpg" width=100%/>
+								<br>
+								Xperia XZ1: [<a href="https://drive.google.com/file/d/1pwpo9pDcu0R2-jHzaLD1W-p7bVIxfdcg/view?usp=sharing"><b>GA</b></a>] [<b>LA</b>]
+							</td>
+						</tr>
+				</tbody>
+				</table>
+				<!-- <br> 
 				Training data captured using iPhone XR can be downloaded at <b><span style="color:blue"> <a href="https://drive.google.com/file/d/1JhZSfQxsxbXb8sxtxw-leJEUdsvASgdp/view?usp=sharing">[here]</a></span></b>.
 				<br>
-				<img src="images/train.jpg" width=100%/>
+				<img src="data/train.jpg" width=100%/>
 				<br>
 				<br>
 				Besides photos in the same distribution as training photos, test data also consists of out-of-distribution cases such as color-balanced and taken-by-XperiaXZ1 photos.
 				<br>
 				All test cases can be downloaded at <b><span style="color:blue"><a href="https://drive.google.com/file/d/1atyzBBLWNOQCdzPIkmfD3h6OlEU2tNTi/view?usp=sharing">[here]</a></span></b>.
 				<br>
-				<img src="images/test.jpg" width=100%/>
+				<img src="data/test.jpg" width=100%/> -->
+				<br>
+				<br>
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: justify;">
+				<h2>Ablation Study and A Quantitative Comparison</h2>
+				<br>
+				We provide a full version of quantitative comparison using PSNR (higher is better) on multiple-domain DIV2K-SCAN 
+				(iPhone XR is a seen domain, while iPhone XR + SCB and Xperia XZ1 are unseen domains) with an image size from 
+				176x176 to 1072x720. 
+				<br>
+				Ablation models, 1D-DPScan, and the previous works Pix2Pix and CycleGAN are trained on and 
+				to solve 1-domain DIV2K-SCAN (iPhone XR); meanwhile, other methods such as Old Photo Restoration (OPR), 
+				industrial products, and our G-DPScan are to solve multiple domains. 
+				<br>
+				This experiment shows that: 
+				<ul>
+					<li>
+						The image quality is gradually reduced in ascending order of image size, 
+						proving that the larger the image size, the more serious misalignment.
+					</li>
+					<li>
+						Each presented technique brings a significant improvement, and the 
+						final version of DPScan outperforms all ablation models 
+						(middle-top). 
+					</li>
+					<li>
+						Our 1D-DPScan (trained on iPhone XR only) and G-DPScan (trained to solve multiple domains) outperform 
+						the research works and industrial products Google Photo Scan and Genius Scan comprehensively. 
+					</li>
+				</ul>
+				Abbreviation:
+				<ul>
+					<li>RECA: the RECA-customized network</li>
+					<li>LA: model trained on Locally-Aligned data</li>
+					<li>SL: model trained with Supervised Learning</li>
+					<li>SSL: model trained with Semi-Supervised Learning</li>
+					<li>1D-DPScan: DPScan+RECA+LA+SSL trained on 1-domain DIV2K-SCAN (iPhone XR)</li>
+					<li>G-DPScan: DPScan+RECA+LA+SSL trained on multiple-domain DIV2K-SCAN</li>
+				</ul>
+				<img src="data/ds_eval_psnr.png" width=100%/>
+				<br>
+				<i>Please check our supplemental document for a comparison using LPIPS and MS-SSIM.</i>
+				<br>
 				<hr>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<h2>A Result</h2>
+				<h2>A Qualitative Comparison between Ablation Models</h2>
 				<br>
-				<img src="images/result.jpg" width=100%/>
+				<video width="100%" controls>
+					<source src="data/ds_ab.mp4" type="video/mp4">
+					Your browser does not support the video element.
+				</video>
 				<hr>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<h2>In case of Out-of-distribution</h2>
+				<h2>A Qualitative Comparison on iPhone XR<br>(Seen Domain - In-Distribution)</h2>
 				<br>
-				<img src="images/ood.jpg" width=100%/>
+				<img src="data/ds_xr.jpg" width=100%/>
+				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h2>A Qualitative Comparison on Color-Balanced iPhone XR and Xperia XZ1<br>(Unseen Domains - Out-of-Distribution)</h2>
+				<br>
+				<img src="data/ds_ood.jpg" width=100%/>
 				<hr>
 			</td>
 		</tr>
@@ -180,8 +361,24 @@
 			<td>
 				<h2>License</h2>
 				<br>
-				This work, including the trained model, code, and dataset, is for non-commercial uses and research purposes only.
+				This work, including the trained models, code, and dataset, is for non-commercial uses and research purposes only.
 				<hr>
+			</td>
+		</tr>
+		<tr>
+			
+			<td style="text-align: left;">
+				<h2>References</h2>
+				<br>
+				<p style="font-style: italic;">
+				<b>[Simplest Color Balance - SCB]</b> Limare, Nicolas, Jose-Luis Lisani, Jean-Michel Morel, Ana Belén Petro, and Catalina Sbert. "Simplest color balance." Image Processing On Line 1 (2011): 297-315.
+				<br>
+				<b>[Pix2Pix]</b> Isola, Phillip, Jun-Yan Zhu, Tinghui Zhou, and Alexei A. Efros. "Image-to-image translation with conditional adversarial networks." In Proceedings of the IEEE conference on computer vision and pattern recognition, pp. 1125-1134. 2017.
+				<br>
+				<b>[CycleGAN]</b> Zhu, Jun-Yan, Taesung Park, Phillip Isola, and Alexei A. Efros. "Unpaired image-to-image translation using cycle-consistent adversarial networks." In Proceedings of the IEEE international conference on computer vision, pp. 2223-2232. 2017.
+				<br>
+				<b>[OPR]</b> Wan, Ziyu, Bo Zhang, Dongdong Chen, Pan Zhang, Dong Chen, Jing Liao, and Fang Wen. "Old photo restoration via deep latent space translation." arXiv preprint arXiv:2009.07047 (2020).
+				</p>
 			</td>
 		</tr>
 <br>
